@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      body{
+        font-weight: bold;
+        font-family: Helvetica;
+      }
+      .welcome-text {
+        color: Firebrick;
+      }
+      .age-text {
+        color: Navy;
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+<body>
+  <script>
+    function displayWelcomeMessage() {
+      var date=new Date();
+      name = prompt("Please input your name:");
+      ageInput = prompt("Please input your birth year:");
+      age = parseInt(date.getFullYear()-ageInput);
+      document.writeln("Hello, <span class='welcome-text'>" +name+"</span>!<br>");
+      console.log(`Hello, ${name}!`);
+      if (!isNaN(age) && age > 0) {
+        if(age==1){
+          document.writeln("Your are <span class='age-text'>one</span> year old!");
+          console.log(`Your are one year old!`);
+        }
+        else{
+          document.writeln("Your are <span class='age-text'>" +age+"</span> years old!");
+          console.log(`Your are ${age} years old!`);
+        }
+      } else {
+        alert("Your input is incorrect!");
+        console.log("Your input is incorrect!");
+        document.writeln("Your age is a mystery!");
+      }
+    }
+    displayWelcomeMessage();
+  </script>
+</body>
+</html>

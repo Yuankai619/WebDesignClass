@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Website</title>
+    <style>
+        #background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100%;
+            z-index: -1; 
+        }
+        body{
+            font-family: Helvetica, sans-serif;
+            color: white;
+        }
+
+        #logo {
+            position: absolute;
+            top: - 50px;
+            left: 500px;
+            z-index: 1;
+        }
+
+        #logo img {
+            width: 100px;
+            height: 100px;
+        }
+
+        a {
+            text-decoration: none;
+            color: white;
+        }
+
+        a:hover {
+            background-color: lightblue;
+            color: navy;
+            font-weight: bold;  
+            text-decoration: underline;
+        }
+        li{
+            list-style-type:none
+        }
+        ul{
+            padding: 0;
+        }
+        #link-icon {
+            width: 20px;
+            height: 20px;
+            position: relative;
+            top: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div id="background">
+        <img src="ntou.jpg" alt="ntou" id="background">
+    </div>
+    <div id="logo">
+        <img src="ntou_logo.png" alt="NTOU Logo">
+    </div>
+
+    <h1>Here are my favorite sites</h1>
+
+    <p>click on a name to go to website</p>
+
+    <ul>
+        <li><a href="https://www.google.com"><img id="link-icon" src="link.png" alt="Google"> Google</a></li>
+        <li><a href="https://www.facebook.com"><img id="link-icon" src="link.png" alt="Facebook"> Facebook</a></li>
+        <li><a href="https://www.youtube.com/"><img id="link-icon" src="link.png" alt="YouTube"> YouTube</a></li>
+    </ul>
+</body>
+</html>

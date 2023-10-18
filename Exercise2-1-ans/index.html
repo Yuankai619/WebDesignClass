@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: "Perpetua", serif;
+            font-size: 1.3em;
+        }
+        p::first-letter {
+            font-size: 1.5em;
+        }
+        input{
+            color: blue;
+        }
+        input[type="color"] {
+            initial-value: #0000ff;
+            font-weight: 600;
+        }
+        /* Change color for submit and reset buttons */
+        input[type="submit"],
+        input[type="reset"] {
+            font-family: "Perpetua", serif;
+            color: firebrick;
+        }
+        input[type="checkbox"]:checked ,
+        input[type="radio"]:checked {
+            color: blue;
+        }
+    </style>
+    <title>Document</title>
+</head>
+<h1>Advanced Web Form</h1>
+      <form method = "post" action = "https://web-form-2023-97724a1c7fb1.herokuapp.com/">
+        <p>
+            <label>Your name:
+               <input name = "fullname" type = "text" size = "25"
+                  maxlength = "30">
+            </label>
+        </p>
+        <p>
+            <label>Your email:
+                <input name = "email" type = "email" placeholder = "name@domain.com" 
+                  required /> (name@domain.com)
+            </label>
+        </p>
+        <p>
+            <label>Your homepage's URL:
+                <input name = "url" type = "url" 
+                placeholder = "http://www.domainname.com" /> 
+                (http://www.domainname.com)
+            </label>
+        </p>
+        <p>
+            <label>Your birthday date:    
+                <input name = "date" type = "date" /> (yyyy-mm-dd)
+            </label>
+        </p>
+        <p>
+            <label>Your favorite color:
+                <input name = "color" type = "color" value="#0000ff" autofocus /> 
+            </label>
+        </p>
+        <p>
+            <label  for = "txtList">Your Department:
+                <input name = "department" type = "text" id = "txtList" 
+               placeholder = "Select a Department" list = "Departments" />
+                <datalist id="Departments">
+                    <option value="Department of Aquaculture"></option>
+                    <option value="Department of Bioscience and Biotechnology"></option>
+                    <option value="Department of Communications, Navigation and Control Engineering"></option>
+                    <option value="Department of Computer Science and Engineering"></option>
+                    <option value="Department of Electrical Engineering"></option>
+                    <option value="Department of Environmental Biology and Fisheries Science"></option>
+                    <option value="Department of Food Science"></option>
+                    <option value="Department of Harbor and River Engineering"></option>
+                    <option value="Department of Marine Engineering"></option>
+                    <option value="Department of Marine Environmental Informatics"></option>
+                    <option value="Department of Mechanical and Mechatronic Engineering"></option>
+                    <option value="Department of Merchant Marine"></option>
+                    <option value="Department of Optoelectronics and Materials Technology"></option>
+                    <option value="Department of Shipping and Transportation Management"></option>
+                    <option value="Department of Systems Engineering and Naval Architecture"></option>
+                    <option value="Department of Transportation Science"></option>
+                </datalist>
+            </label>
+        </p>  
+        <p>  
+            <strong style="font-style:italic;">Check off all of the characteristics that you enjoyed about the college:</strong><br>
+
+            <label>
+               <input name = "likes" type = "checkbox" 
+                  value = "campus">Campus</label>
+            <label>
+               <input name = "likes" type = "checkbox" 
+                  value = "student">Student</label>
+            <label> 
+               <input name = "likes" type = "checkbox" 
+                  value = "location">Location</label> 
+            </label>
+        </p>  
+        <p>  
+            <strong style="font-style:italic;">How did you become interested in our college? </strong><br>
+
+            <label>
+               <input name = "interest" type = "radio" 
+                  value = "friends">Friends</label>
+            <label>
+               <input name = "interest" type = "radio" 
+                  value = "television">Television</label> 
+            <label> 
+               <input name = "interest" type = "radio" 
+                  value = "internet">Internet</label>
+            </label>
+        </p> 
+        <p> 
+            <input type = "submit" value = "Submit">
+            <input type = "reset" value = "Clear">
+        </p>   
+      </form>
+   </body>
+</html>

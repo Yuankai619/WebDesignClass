@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Baseball Shapes</title>
+    <style>
+        #baseball-container div {
+            width: 50px;
+            height: 50px;
+            display: inline-block;
+        }
+        #navbar{
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="navbar">
+        Side Length (<=10): <input type="number" id="sideLength" max="10" value="5">
+        <button onclick="drawBaseballTriangle()">Draw Baseball Triangle</button>
+        <button onclick="drawBaseballSquare()">Draw Baseball Square</button>
+        <button onclick="drawSpecialSquare()">Draw Special Square</button>
+    </div>
+    <hr>
+    <div id="baseball-container"></div>
+    <script>
+        const container = document.getElementById('baseball-container');
+
+        function clearContainer() {
+            container.innerHTML = '';
+        }
+
+        function createImageElement(src) {
+            const div = document.createElement('div');
+            const img = document.createElement('img');
+            img.src = src;
+            img.width = 50;
+            img.height = 50;
+            div.appendChild(img);
+            return div;
+        }
+        function validateInput() {
+            const sideLengthInput = document.getElementById('sideLength');
+            let sideLength = parseInt(sideLengthInput.value);
+            if (isNaN(sideLength) || sideLength < 0 || sideLength > 10) {
+                alert("Invalid input");
+                sideLengthInput.value = 5;
+                return false;
+            }
+            return true;
+        }
+
+
+        function drawBaseballTriangle() {
+            if (!validateInput()) return;
+            clearContainer();
+            const sideLength = parseInt(document.getElementById('sideLength').value);
+            for (let i = 1; i <= sideLength; i++) {
+                for(let j=0;j<sideLength-i;j++)
+                    container.appendChild(createImageElement('blank.png'));
+                for (let j = 0; j < i; j++)
+                    container.appendChild(createImageElement('baseball.jpg'));
+                container.appendChild(document.createElement('br'));
+            }
+        }
+
+        function drawBaseballSquare() {
+            if (!validateInput()) return;
+            clearContainer();
+            const sideLength = parseInt(document.getElementById('sideLength').value);
+            for (let i = 0; i < sideLength; i++) {
+                for (let j = 0; j < sideLength; j++) 
+                    container.appendChild(createImageElement('baseball.jpg'));
+                container.appendChild(document.createElement('br'));
+            }
+        }
+
+        function drawSpecialSquare() {
+            if (!validateInput()) return;
+            clearContainer();
+            const sideLength = parseInt(document.getElementById('sideLength').value);
+            let xNum=parseInt(sideLength*sideLength*0.333);
+            console.log(xNum);
+            for (let i = 0; i < sideLength; i++) {
+                for (let j = 0; j < sideLength; j++) {
+                    if (Math.random()> 0.5){
+                        container.appendChild(createImageElement('baseball.jpg'));
+                    }
+                    else if(xNum){
+                        xNum--;
+                        container.appendChild(createImageElement('baseball-x.jpg'));
+                    }else{
+                        container.appendChild(createImageElement('baseball.jpg'));
+                    }
+                }
+                container.appendChild(document.createElement('br'));
+            }
+        }
+    </script>
+</body>
+
+</html>

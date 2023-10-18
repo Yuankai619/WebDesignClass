@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Intelligence</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/earlyaccess/cwtexfangsong.css">
+    <style>
+        
+        body{
+            font-family: "Perpetua", sans-serif;
+            /* font-size: 24px; */
+        }
+        h1{
+            text-align: center;
+            font-size: 24px;
+        }
+        .navbar{
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+        }
+        .navitem{
+            /* width: auto; */
+            justify-items: stretch;
+        }
+       
+        /* Dropdown menu styles */
+        nav {
+            font-family: "Perpetua", sans-serif;
+            text-align: center;
+            font-weight: bold;
+            color: white;
+            border: 2px solid RoyalBlue;
+            text-align: center;
+            width: calc(100%/6);
+            background-color: RoyalBlue; 
+            box-sizing: border-box;
+        }
+        nav ul{ 
+            position: absolute;
+            display: none;
+            list-style: none;
+            margin: 0;
+            width: calc(100%/6);
+            padding: 0; 
+        }
+         nav:hover ul{
+            display: block;
+        }
+         nav ul li{ 
+            border-top: 1px solid RoyalBlue;
+            background-color: white;
+            
+            color: black; 
+        }
+        nav ul li:hover {
+            background-color: PowderBlue;
+        }
+        a{
+            text-decoration: none;
+        }
+        ul {
+            position: absolute;
+        }
+        @media screen and (max-width: 600px) {
+            div{
+                width: 100%;
+            }
+            nav ul{
+                width: 100%;
+                position: relative;
+            }
+            nav{
+                width: 100%;
+            }
+            .navbar{
+                display: flex;
+                flex-direction: column;
+            }
+            nav ul li{
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1 style="color: RoyalBlue;">Web Intelligence</h1>
+    <div class="navbar">
+
+        <!-- <div class="navitem"> -->
+            <nav>JavaScript
+                <ul>
+                    <li><a target="_blank" href="https://www.w3schools.com/js/default.asp">W3Schools</a></li>
+                    <li><a target="_blank" href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript">MDN</a></li>
+                    <li><a target="_blank" href="https://www.json.org/json-en.html">JSON</a></li>
+                </ul>
+            </nav>
+        <!-- </div> -->
+        <!-- <div class="navitem"> -->
+            <nav>jQuery
+                <ul>
+                    <li><a target="_blank" href="https://jquery.com/">jQuery.org</a></li>
+                    <li><a target="_blank" href="https://jqueryui.com/">jQuery UI</a></li>
+                    <li><a target="_blank" href="https://www.w3schools.com/jquERy/default.asp">jQuery Tutorial</a></li>
+                </ul>
+            </nav>
+        <!-- </div> -->
+        <!-- <div class="navitem"> -->
+            <nav>node.js
+                <ul>
+                    <li><a target="_blank" href="Node.js Tutorial">Node.js Tutorial</a></li>
+                </ul>
+            </nav>
+        <!-- </div> -->
+        <!-- <div class="navitem"> -->
+            <nav>PHP
+            </nav>
+        <!-- </div> -->
+        <!-- <div class="navitem"> -->
+            <nav>ASP.Net
+            </nav>
+        <!-- </div> -->
+        <!-- <div class="navitem"> -->
+            <nav>Servlet/JSP
+            </nav>
+        <!-- </div> -->
+    </div>
+    <!-- </iframe> -->
+    <iframe src="content.html" width="100%" height="550px"></iframe>
+</body>
+</html>
