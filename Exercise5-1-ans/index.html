@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basic DOM and function</title>
+    <style>
+        body {
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        .calculator {
+            display: flex;
+            flex-direction: column;
+            width: 200px;
+        }
+
+        input, select, button {
+            margin-bottom: 10px;
+            padding: 5px;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 120%;
+            width: 200px;
+        }
+
+        button:hover {
+            opacity: 0.8;
+        }
+
+        .result {
+            font-size: 120%;     
+            padding: 10px;
+            border: 3px solid #ddd;
+            width: 200px;
+            text-align: center;
+            box-sizing: border-box;
+         }
+    </style>
+</head>
+<body>
+    <div class="calculator">
+        <h3>Simple Calculator</h3>
+        <input type="number" id="firstNumber" placeholder="Input first number">
+        <select id="operator">
+            <option value="add">+</option>
+            <option value="subtract">-</option>
+            <option value="multiply">*</option>
+            <option value="divide">/</option>
+        </select>
+        <input type="number" id="secondNumber" placeholder="Input second number">
+        <button  onclick="calculate()">Calculate</button>
+        <div class="result" id="result">Results</div>
+    </div>
+
+    <script>
+        function calculate() {
+            var firstNum = parseFloat(document.getElementById("firstNumber").value);
+            var secondNum = parseFloat(document.getElementById("secondNumber").value);
+            var operator = document.getElementById("operator").value;
+            var result;
+
+            switch (operator) {
+                case "add":
+                    result = firstNum + secondNum;
+                    break;
+                case "subtract":
+                    result = firstNum - secondNum;
+                    break;
+                case "multiply":
+                    result = firstNum * secondNum;
+                    break;
+                case "divide":
+                    if(secondNum === 0) {
+                        document.getElementById("result").innerText = "Dividing by 0 is illegal";
+                        return;
+                    }
+                    result = firstNum / secondNum;
+                    break;
+            }
+
+            document.getElementById("result").innerText = result;
+        }
+    </script>
+</body>
+</html>
