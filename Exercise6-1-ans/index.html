@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Function</title>
+    <style type="text/css">
+        li {
+            display: inline;
+            margin-right: 10px;
+        }
+
+        ol {
+            margin-left: 0;
+            padding-left: 0;
+        }
+
+        img.dice {
+            width: 100px;
+            height: 100px;
+        }
+
+        img.congrats {
+            width: 440px;
+        }
+
+        #msg {
+            font-family: Helvetica, "Microsoft YaHei", "LiHei Pro", TW-Kai;
+            font-size: 120%;
+            color: navy;
+        }
+    </style>
+</head>
+<body>
+    <form action="#">
+        <input id="rollButton" type="button" value="Roll Dice">
+        <input id="cheatButton" type="button" value="Shortcut">
+        <input id="cheatButton2" type="button" value="Shortcut2">
+    </form>
+    <ol>
+        <li><img id="die1" class="dice" src="blank.jpg" alt="blank image"></li>
+        <li><img id="die2" class="dice" src="blank.jpg" alt="blank image"></li>
+        <li><img id="die3" class="dice" src="blank.jpg" alt="blank image"></li>
+        <li><img id="die4" class="dice" src="blank.jpg" alt="blank image"></li>
+    </ol>
+    <div id="msg"></div>
+
+    <script>
+        function rollDice() {
+            return Math.floor(Math.random() * 6) + 1;
+        }
+
+        function displayDice(dieId, value) {
+            document.getElementById(dieId).src =`die${value}.jpg`;
+        }
+        function displayCongrats(){
+            const congratImg = document.createElement("img");
+            congratImg.src="congrats.png";
+            congratImg.className="congrats";
+            const div = document.getElementById("msg");
+            console.log(congratImg);
+            div.appendChild(congratImg);
+        }
+        function displayMessage(message) {
+            const msgDiv = document.getElementById("msg");
+            msgDiv.innerHTML += message + "<br>";
+        }
+        document.getElementById("rollButton").addEventListener("click", function() {
+            document.getElementById("msg").innerHTML = "";
+            let die1Value = rollDice();
+            let die2Value = rollDice();
+            let die3Value = rollDice();
+            let die4Value = rollDice();
+
+            displayDice("die1", die1Value);
+            displayDice("die2", die2Value);
+            displayDice("die3", die3Value);
+            displayDice("die4", die4Value);
+
+            let values = [die1Value, die2Value, die3Value, die4Value].sort();
+            if (new Set(values).size == 1) {
+                displayMessage('Congratulations! Your roll is "一色"!');
+                displayCongrats();
+            } else if (new Set(values).size == 4) {
+                displayMessage('Oops! Your roll is "無面"!');
+            } else if (new Set(values).size == 2) {
+                let score = (values[0] === values[1] ? values[2] + values[3] : values[0] + values[1]);
+                if (score === 12) {
+                    displayMessage('Congratulations! Your roll is "十八"!');
+                    displayCongrats();
+                    displayMessage('Your score is 12!');
+                }else{
+                    displayMessage('<br>Your score is '+score+'!');
+                }
+            } else {
+                displayMessage('No decision, please re-roll the dice!');
+            }
+        });
+
+        document.getElementById("cheatButton").addEventListener("click", function() {
+            document.getElementById("msg").innerHTML = "";
+            let value = rollDice();
+            displayDice("die1", value);
+            displayDice("die2", value);
+            displayDice("die3", value);
+            displayDice("die4", value);
+            displayMessage('Congratulations! Your roll is "一色"!');
+            displayCongrats();
+        });
+
+        document.getElementById("cheatButton2").addEventListener("click", function() {
+            document.getElementById("msg").innerHTML = "";
+            displayDice("die1", 6);
+            displayDice("die2", 6);
+            displayDice("die3", 3);
+            displayDice("die4", 3);
+            displayMessage('Congratulations! Your roll is "十八"!');
+            displayCongrats();
+            displayMessage('<br>Your score is 12!');
+        });
+    </script>
+</body>
+</html>
