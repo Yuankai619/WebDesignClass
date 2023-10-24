@@ -10,3 +10,5 @@
 - [Homework4-2](./Exercise4-2-ans/index.html)
 - [Homework5-1](./Exercise5-1-ans/index.html)
 - [Homework5-2](./Exercise5-2-ans/index.html)
+- [Homeword6-1](./Exercise6-1-ans/index.html)
+- [Homeword6-2](./Exercise6-2-ans/index.html)
