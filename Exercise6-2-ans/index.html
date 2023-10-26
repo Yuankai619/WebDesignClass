@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>專案失敗原因產生器</title>
+    <style>
+        @import url(https://fonts.googleapis.com/earlyaccess/cwtexkai.css);
+        body {
+            font-family: 'cwTeXKai', Perpetua, serif;
+            text-align: center;
+            padding: 40px;
+        }
+        h1 {
+            color: DIMGRAY;
+        }
+        .navy {
+            color: NAVY;
+        }
+        .firebrick {
+            color: FIREBRICK;
+            font-size: 150%;
+        }
+        img {
+            max-width: 300px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <h1>專案失敗了，是因為... </h1>
+        <h1>
+            <span id="adjNoun" class="navy"></span>
+            <span id="verb" class="firebrick"></span>
+        </h1>
+        <img id="randomImage" src="" alt="Random Image" onclick="location.reload()">
+    </div>
+
+    <script>
+        const adjectives = ["客戶那邊的", "我們的", "負責談需求的", "負責這個部分的", "直到上線前一天", "(雙手一攤)"];
+        const nouns = ["專案經理", "主管", "工程師", "設計師", "外包", "User", "聯絡窗口"];
+        const verbs = ["當初沒有講清楚", "一直換", "說他肚子不舒服", "擺爛不想做了", "突然開始放長假", "去生小孩了", "離職了", "都沒甚麼 sense", "都沒有跟我講", "以為這些不用做", "一直在狀況外", "做事拖拖拉拉", "還搞不清楚狀況", "Quality 有問題", "東西一直改", "在整我", "突然就沒來了"];
+        const images = ["Cat.jpg", "Yao.jpg", "Harry.jpg", "Jacky.jpg"];
+
+        function generateReason() {
+            let randomAdj = adjectives[Math.floor(Math.random() * adjectives.length)];
+            let randomNoun = nouns[Math.floor(Math.random() * nouns.length)];
+            let randomVerb = verbs[Math.floor(Math.random() * verbs.length)];
+            let randomImage = images[Math.floor(Math.random() * images.length)];
+
+            document.getElementById('adjNoun').textContent = randomAdj + " " + randomNoun;
+            document.getElementById('verb').textContent = randomVerb;
+            document.getElementById('randomImage').src = randomImage;
+        }
+
+        window.onload = generateReason;
+    </script>
+</body>
+</html>
