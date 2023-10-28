@@ -48,17 +48,8 @@
         function rollDice() {
             return Math.floor(Math.random() * 6) + 1;
         }
-
         function displayDice(dieId, value) {
             document.getElementById(dieId).src =`die${value}.jpg`;
-        }
-        function displayCongrats(){
-            const congratImg = document.createElement("img");
-            congratImg.src="congrats.png";
-            congratImg.className="congrats";
-            const div = document.getElementById("msg");
-            console.log(congratImg);
-            div.appendChild(congratImg);
         }
         function displayMessage(message) {
             const msgDiv = document.getElementById("msg");
@@ -80,39 +71,39 @@
             if (new Set(values).size == 1) {
                 displayMessage('Congratulations! Your roll is "一色"!');
                 displayMessage('<img src="congrats.png" width=440>')
-                displayCongrats();
             } else if (new Set(values).size == 4) {
                 displayMessage('Oops! Your roll is "無面"!');
+            }else if(new Set(values).size==3){
+                let score;
+                if(values[0]==values[1])
+                    score=values[2]+values[3];
+                else if(values[1]==values[2])
+                    score=values[0]+values[3];
+                else
+                    score=values[0]+values[1];
+                displayMessage('Your score is '+score+'!');
             }
             else if(new Set(values).size == 2){
-                displayMessage('No decision, please re-roll the dice!');
-            }
-            else{
-                let score = (values[0] === values[1] ? values[2] + values[3] : values[0] + values[1]);
-                if (score === 12) {
-                    displayMessage('Congratulations! Your roll is "十八"!');
-                    displayMessage('<img src="congrats.png" width=440>')
-                    displayMessage('Your score is 12!');
+                if(values[0]==values[1] && values[2]==values[3]){
+                    let score = Math.max(values[0]+values[1],values[2]+values[3]);
+                    if (score === 12) {
+                        displayMessage('Congratulations! Your roll is "十八"!');
+                        displayMessage('<img src="congrats.png" width=440>')
+                        displayMessage('Your score is 12!');
+                    }else{
+                        displayMessage('Your score is '+score+'!');
+                    }
                 }else{
-                    displayMessage('Your score is '+score+'!');
+                    displayMessage('No decision, please re-roll the dice!');
                 }
             }
-            // } else if (new Set(values).size == 2) {
-            //     if((values[0]==values[1]&&values[1]==values[2])||(values[1]==values[2]&&values[2]==values[3])){
-            //         displayMessage('No decision, please re-roll the dice!');
-            //     }else{
-            //         let score = (values[0] === values[1] ? values[2] + values[3] : values[0] + values[1]);
-            //         if (score === 12) {
-            //             displayMessage('Congratulations! Your roll is "十八"!');
-            //             displayMessage('<img src="congrats.png" width=440>')
-            //             displayMessage('Your score is 12!');
-            //         }else{
-            //             displayMessage('<br>Your score is '+score+'!');
-            //         }
-            //     }
-            // }
         });
-
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+        }
         document.getElementById("cheatButton").addEventListener("click", function() {
             document.getElementById("msg").innerHTML = "";
             let value = rollDice();
@@ -121,15 +112,20 @@
             displayDice("die3", value);
             displayDice("die4", value);
             displayMessage('Congratulations! Your roll is "一色"!');
-            displayCongrats();
+            displayMessage('<img src="congrats.png" width=440>');
         });
 
         document.getElementById("cheatButton2").addEventListener("click", function() {
             document.getElementById("msg").innerHTML = "";
-            displayDice("die1", 6);
-            displayDice("die2", 6);
-            displayDice("die3", 3);
-            displayDice("die4", 3);
+            let randomValue=rollDice();
+            while(randomValue==6)
+                randomValue=rollDice();
+            let values=[6,6,randomValue,randomValue];
+            shuffleArray(values);
+            displayDice("die1", values[0]);
+            displayDice("die2", values[1]);
+            displayDice("die3", values[2]);
+            displayDice("die4", values[3]);
             displayMessage('Congratulations! Your roll is "十八"!');
             displayMessage('<img src="congrats.png" width=440>')
             displayMessage('Your score is 12!');
