@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Doraemon</title>
+    <style type="text/css">
+        @import url(https://fonts.googleapis.com/earlyaccess/notosanstc.css);
+        img {
+            width: 300px;
+            height: 300px;
+        }
+        div,
+        input {
+            font-family: Noto Sans TC, Perpetua, serif;
+            width: 300px;
+        }
+        div {
+            color: darkblue;
+            text-align: center;
+            font-size: 24px;
+        }
+        input {
+            font-size: 18px;
+            font-weight: bold;
+        }
+    </style>
+    <script>
+        window.onload = function () {
+            let gadgetString="任意門 時光機 竹蜻蜓 時光布 記憶麵包 縮小燈 翻譯蒟蒻 如果電話亭 穿透環 更衣照相機";
+            let gadgetsArray=gadgetString.split(' ');
+            let gadgetImage = document.getElementById("gadget");
+            let messagesDiv = document.getElementById("messages");
+            let playButton = document.getElementById("play");
+            playButton.addEventListener("click", function () {
+                gadgetImage.src = "blank.png";
+                const audio = new Audio('doraemon.mp3'); 
+                audio.play();
+                messagesDiv.innerText="";
+                audio.addEventListener("ended", function () {
+                    randomIndex = Math.floor(Math.random() * 10)+1;
+                    console.log(typeof(randomIndex));
+                    console.log(randomIndex.toString());
+                    let imageSrc;
+                    if(randomIndex!=10)
+                        imageSrc="0"+randomIndex.toString();
+                    else
+                        imageSrc=randomIndex.toString();
+                    console.log(imageSrc);
+                    gadgetImage.src = imageSrc + ".png"; 
+                    messagesDiv.innerText = "您抽到"+gadgetsArray[randomIndex-1]+"!";
+                });
+            });
+        }
+    </script>
+</head>
+
+<body>
+    <img id="gadget" src="00.png" alt="gadget">
+    <form action="#">
+        <input id="play" type="button" value="抽道具">
+    </form>
+    <div id="messages">請按下Button抽出道具</div>
+</body>
+
+</html>
