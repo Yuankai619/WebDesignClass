@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Local Storage</title>
+    <style type="text/CSS">
+        table {
+            width: 90%;
+            border-collapse: collapse;
+            background-color: lightblue;
+            font-family: Perpetua;
+        }
+
+        table, td, th {
+            border: 1px solid black;
+            padding: 4px;
+        }
+
+        th {
+            text-align: center;
+            color: white;
+            background-color: darkblue;
+        }
+
+        tr.oddrow {
+            background-color: white;
+        }
+
+        td {
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <form action="#">
+        <p>
+            <label>Book Title:</label>
+                <input type="text" id="title">
+            <label>Author(s):</label>
+                <input type="text" id="author">
+            <label>Year:</label>
+                <input type="number" id="year">
+            <label>Book URL:</label>
+                <input type="url" id="url">
+        </p>
+        <p>
+            <input type="button" value="Add New Item" id="addButton">
+            <input type="button" value="Remove All Items" id="removeAllButton">
+        </p>
+    </form>
+    <hr>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Year</th>
+                <th>URL</th>
+            </tr>
+        </thead>
+        <tbody id="display">
+
+        </tbody>
+    </table>
+    <script>
+        var titleDom = document.getElementById("title")
+        var authorDom = document.getElementById("author")
+        var yearDom = document.getElementById("year")
+        var urlDom = document.getElementById("url")
+        var tableDom = document.getElementById("display")
+        var addButtonDom = document.getElementById("addButton")
+        var removeAllButtonDom = document.getElementById("removeAllButton")
+        function Item(t, a, y, u){
+            this.title = t
+            this.author = a
+            this.year = y
+            this.url = u
+        }
+        function addRow(item){
+            let nowRows = tableDom.rows.length
+            let row = tableDom.insertRow()
+            if(nowRows%2==0){
+                row.className = "oddrow";
+            }
+            let td1 = row.insertCell(); td1.innerHTML = item.title;
+            let td2 = row.insertCell(); td2.innerHTML = item.author;
+            let td3 = row.insertCell(); td3.innerHTML = item.year;
+            let td4 = row.insertCell(); td4.innerHTML = "<a href='"+item.url+"' target='_blank'>"+item.url+"</a>";
+        }
+        function deleteAllItem(){
+            localStorage.clear();
+            tableDom.innerHTML = "";
+            alert("All items were removed!");
+        }
+        function addItem(){
+            let timeIndex = new Date().getTime();
+            let nowItem = new Item(titleDom.value, authorDom.value, yearDom.value, urlDom.value);
+            localStorage.setItem("ntou-"+String(timeIndex), JSON.stringify(nowItem));
+            addRow(nowItem);
+        }
+        removeAllButtonDom.addEventListener("click",deleteAllItem);
+        addButtonDom.addEventListener("click", addItem);
+        window.onload = ()=>{
+            for(let i=0; i<localStorage.length; i++){
+                let key   = localStorage.key(i);
+                let value = localStorage.getItem(key);
+                if(key.startsWith("ntou-")){
+                    addRow(JSON.parse(value));
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>
