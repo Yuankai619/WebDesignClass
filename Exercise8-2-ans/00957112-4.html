@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Pin Pictures</title>
+    <style type="text/css">
+        div.nav {
+            border: 1px solid skyBlue;
+            margin-left: 3px;
+            padding: 3px;
+            float: left;
+        }
+
+        input,
+        p,
+        li {
+            font-family: Helvetica,
+                "Microsoft YaHei", "LiHei Pro", TW-Kai;
+        }
+
+        li {
+            font-size: 12px;
+        }
+
+        img.picture {
+            position: absolute;
+        }
+    </style>
+    <script type="text/javascript">
+        let z = 2;
+        let pincolor = ['blue.png', 'red.png', 'yellow.png'];
+        let pict = ['01.png', '02.png', '03.png', '04.png', '05.png', '06.png', '07.png', '08.png', '09.png', '10.png'];
+        function start() {
+            document.getElementById("addButton").addEventListener("click", add, false);
+            document.getElementById("removeAllButton").addEventListener("click", dlt, false);
+
+        }
+        function add() {
+            let newnode = document.createElement("img");
+            newnode.setAttribute("class", "picture");
+            newnode.setAttribute("id", "ddd");
+            newnode.setAttribute("src", pict[document.getElementById("pic").value - 1]);
+            newnode.setAttribute("style", 'top: ' + document.getElementById("x").value + 'px; left: ' + document.getElementById("y").value + 'px; z-index:' + z + ';');
+            document.getElementById("img-0").parentNode.insertBefore(newnode, document.getElementById("img-0"));
+            let newpin = document.createElement("img");
+            newpin.setAttribute("class", "picture");
+            newpin.setAttribute("id", "ddd");
+            newpin.setAttribute("src", pincolor[Math.floor(Math.random() * 3)]);
+            newpin.setAttribute("width", "30px");
+            let x = document.getElementById("x").value - 10;
+            let y = parseInt(document.getElementById("y").value) + 85;
+            z++;
+            newpin.setAttribute("style", 'top: ' + x + 'px; left: ' + y + 'px; z-index:' + z + ';');
+            document.getElementById("img-0").parentNode.insertBefore(newpin, document.getElementById("img-0"));
+
+        }
+        function dlt() {
+            let bk = document.getElementById("img-0").parentNode;
+            console.log(bk);
+            let myNodelist = document.querySelectorAll("img");
+            let i;
+            for (i = 0; i < myNodelist.length; i++) {
+                if(myNodelist[i].id=="ddd"){
+                    bk.removeChild(myNodelist[i]);
+                }
+            }
+        }
+
+    </script>
+</head>
+
+<body onload="start()">
+    <img src="blackboard.jpg" height="600" width="800" style="float:left; z-index:0;" />
+    <img id="img-0" class="picture" style="top: 50px; left: 50px; z-index:1;" src="doraemon.png" />
+    <img id="pin-0" class="picture" style="top: 40px; left: 135px; z-index:1;" width="30px" src="red.png" />
+
+    <div id="nav" class="nav">
+        <form action="#">
+            <p>
+                <label>要放哪個道具圖片(請輸入編號):
+                    <input type="number" id="pic" min="1" max="10" step="1" value="1" />
+                </label>
+                <br />
+                <label>圖片X座標:
+                    <input type="number" id="x" min="40" max="600" step="1" value="40" />
+                </label>
+                <br />
+                <label>圖片Y座標:
+                    <input type="number" id="y" min="40" max="400" step="1" value="100" />
+                </label>
+            </p>
+            <p>
+                <input type="button" value="新增圖片" id="addButton">
+                <input type="button" value="移除所有圖片" id="removeAllButton">
+            </p>
+        </form>
+        <ul>
+            <li>[01]任意門</li>
+            <li>[02]時光機</li>
+            <li>[03]竹蜻蜓</li>
+            <li>[04]時光布</li>
+            <li>[05]記憶麵包</li>
+            <li>[06]縮小燈</li>
+            <li>[07]翻譯蒟蒻</li>
+            <li>[08]如果電話亭</li>
+            <li>[09]穿透環</li>
+            <li>[10]更衣照相機</li>
+        </ul>
+    </div>
+</body>
+
+</html>
