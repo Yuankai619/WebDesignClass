@@ -1,0 +1,93 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Simple Drawing Program</title>
+    <style>
+        #canvas {
+            width: 400px;
+            border: 1px solid #999999;
+            border-collapse: collapse;
+        }
+
+        td {
+            width: 4px;
+            height: 4px;
+            margin: 0px;
+            padding: 0px;
+        }
+
+        .blue {
+            background-color: blue;
+        }
+
+        .red {
+            background-color: red;
+        }
+        .green {
+            background-color: green;
+        }
+        #clear{
+            margin-top: 6px;
+        }
+        .white {
+            background-color: white;
+        }
+    </style>
+    <script>
+        var mouseDown = false;
+        function clearCanvas() {
+            var cells = document.getElementById("tablebody").getElementsByTagName("td");
+            for (var i = 0; i < cells.length; i++) 
+                cells[i].removeAttribute("class");
+        }
+        function createCanvas() {
+            var side = 100;
+            var tbody = document.getElementById("tablebody");
+            // var content = tbody.getElementsByTagName("tr");
+            let clearAll;
+            for (var i = 0; i < side; ++i) {
+                var row = document.createElement("tr");
+                for (var j = 0; j < side; ++j) {
+                    var cell = document.createElement("td");
+                    row.appendChild(cell);
+                } 
+                tbody.appendChild(row);
+            } 
+            document.getElementById("canvas").addEventListener("mousemove", processMouseMove, false);
+            var clearButton = document.getElementById("clear");
+            clearButton.addEventListener("click", clearCanvas, false);
+        } 
+            
+        function mousePressed(e) {
+            if (e.buttons == 1 && mousePressed) 
+                mouseDown = true;
+        }             
+        function mouseReleased(e) {
+            if(mouseReleased)
+                mouseDown = false;
+        }
+        function processMouseMove(e) {
+            if (e.target.tagName.toLowerCase() == "td" && mouseDown) {
+                if (e.ctrlKey) 
+                    e.target.setAttribute("class", "blue");
+                else if (e.shiftKey)
+                    e.target.setAttribute("class", "red");
+                else if (e.altKey)
+                    e.target.setAttribute("class", "green");
+                else if(mouseDown)
+                    e.target.setAttribute("class", "white");
+            }
+        }
+        window.addEventListener("load", createCanvas, false);
+        document.addEventListener("mousedown", mousePressed, false);
+        document.addEventListener("mouseup", mouseReleased, false);
+    </script>
+</head>
+<body>
+    <table id="canvas">
+        <caption>Hold mouse left button and drag to draw. Hold <em>Ctrl</em> for blue, <em>Shift</em> for red, and <em>Alt</em> for green.</caption>
+        <tbody id="tablebody"></tbody>
+    </table>
+    <input type="button" id="clear" value="clear">
+</body>
+</html>

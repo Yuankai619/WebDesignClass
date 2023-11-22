@@ -1,0 +1,33 @@
+<head>
+    <meta charset="utf-8">
+    <title>Pin Pictures</title>
+    <style type="text/css">
+        img{
+            position: absolute;
+        }
+    </style>
+</head>
+
+<body>
+    <img src="google.png" style="top: 100px; left: 100px;z-index:0;" />
+    <img src="ibm.png" style="top: 150px; left: 150px; z-index:1;" />
+    <img src="microsoft.png" style="top: 200px; left: 200px;z-index:2;" />
+    <img src="facebook.png" style="top: 250px; left: 250px;z-index:3;" />
+    <img src="yahoo.png" style="top: 3000px; left: 300px;z-index:4;" />
+    <img src="apple.png" style="top: 350px; left: 350px;z-index:5;" />
+    <script>
+        function sort(array) {
+            return array.sort(() => Math.random() - 0.5);
+        }
+        var picArray = [...document.querySelectorAll("img")]
+        function shuffle(){
+            picArray = sort(picArray)
+            for(let i=0; i<picArray.length; i++){
+                picArray[i].style.zIndex=i
+                picArray[i].style.top = Math.floor(Math.random() * 300) + 100;
+                picArray[i].style.left = Math.floor(Math.random() * 300) + 100;
+            }
+        }
+        setInterval(shuffle, 2000)
+    </script>
+</body>
