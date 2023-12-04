@@ -1,33 +1,41 @@
-<head>
-    <meta charset="utf-8">
-    <title>Pin Pictures</title>
-    <style type="text/css">
-        img{
-            position: absolute;
-        }
-    </style>
-</head>
-
-<body>
-    <img src="google.png" style="top: 100px; left: 100px;z-index:0;" />
-    <img src="ibm.png" style="top: 150px; left: 150px; z-index:1;" />
-    <img src="microsoft.png" style="top: 200px; left: 200px;z-index:2;" />
-    <img src="facebook.png" style="top: 250px; left: 250px;z-index:3;" />
-    <img src="yahoo.png" style="top: 3000px; left: 300px;z-index:4;" />
-    <img src="apple.png" style="top: 350px; left: 350px;z-index:5;" />
-    <script>
-        function sort(array) {
-            return array.sort(() => Math.random() - 0.5);
-        }
-        var picArray = [...document.querySelectorAll("img")]
-        function shuffle(){
-            picArray = sort(picArray)
-            for(let i=0; i<picArray.length; i++){
-                picArray[i].style.zIndex=i
-                picArray[i].style.top = Math.floor(Math.random() * 300) + 100;
-                picArray[i].style.left = Math.floor(Math.random() * 300) + 100;
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Pin Pictures</title>
+        <style type="text/css">
+            img{
+                position:absolute;
             }
-        }
-        setInterval(shuffle, 2000)
-    </script>
-</body>
+        </style>
+    </head>
+    
+    <body>
+        <img src="google.png" alt="google" style="top: 100px; left: 100px;z-index:0;" />
+        <img src="ibm.png" alt="ibm" style="top: 150px; left: 150px; z-index:1;" />
+        <img src="microsoft.png" alt="microsoft" style="top: 200px; left: 200px;z-index:2;" />
+        <img src="facebook.png" alt="facebook" style="top: 250px; left: 250px;z-index:3;" />
+        <img src="yahoo.png" alt="yahoo" style="top: 3000px; left: 300px;z-index:4;" />
+        <img src="apple.png" alt="apple" style="top: 350px; left: 350px;z-index:5;" />
+        <script>
+            window.onload = function() {
+                function shuffleArray(array) {
+                    for (let i = array.length - 1; i > 0; i--) {
+                        const j = Math.floor(Math.random() * (i + 1));
+                        [array[i], array[j]] = [array[j], array[i]];
+                    }
+                }
+    
+                var picArray = [...document.querySelectorAll("img")];
+                function shuffle(){
+                    shuffleArray(picArray);
+                    for(let i = 0; i < picArray.length; i++){
+                        picArray[i].style.zIndex = i;
+                        picArray[i].style.top = Math.floor(Math.random() * 300) + 100 + 'px';
+                        picArray[i].style.left = Math.floor(Math.random() * 300) + 100 + 'px';
+                    }
+                }
+                setInterval(shuffle, 2000);
+            }
+        </script>
+</html>
