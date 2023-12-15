@@ -56,7 +56,8 @@
 
                 $.post('students', { name, age, grade }, function (newStudent) {
                     $('#student-list').append(`<tr><td>${newStudent.name}</td><td>${newStudent.age}歲</td><td>${newStudent.grade}年級</td></tr>`);
-                    $('#add-student-form').reset();
+                    document.getElementById('add-student-form').reset();
+
                 });
             });
         });
